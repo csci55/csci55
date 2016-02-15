@@ -1,0 +1,8 @@
+This is basic illustration of Elevator Class for first Assignment as per the specs laid out by Harvard University Spring 2016 CSCI 55 course.
+The public methods are move() and boardPassenger(int floor).
+move() is public method to move the elevator one floor at a time.
+boardPassenger(int floor) takes a passenger to a desired floor.
+In order to create a constraint this class assumes a final constant as TOTAL_FLOORS, which for the assignment has been initialized to value 7.
+There are two enums defined as MOVE_UP and MOVE_DOWN to control the direction of the movement. This is used to change the values of private variable called current_direction.
+current_floor ranges 0 to 6 indicating range from floor #1 through #7.
+destined_passengers array keeps tracks of how many passers are destined to each floor.

@@ -1,6 +1,6 @@
-package cscie55.hw1;
+package cscie55.hw1.elevator;
 
-import cscie55.hw1.Elevator;
+import cscie55.hw1.elevator.Elevator;
 
 // File ElevetorTest.java
 public class ElevatorTest
@@ -8,6 +8,7 @@ public class ElevatorTest
    public static void main(String argv[])
    {
        Elevator elevator = new Elevator();
+       elevator.boardPassenger(3);
        elevator.boardPassenger(3);
        elevator.boardPassenger(5);
        System.out.println(elevator);
