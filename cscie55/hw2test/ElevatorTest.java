@@ -1,4 +1,4 @@
-package cscie55.hw2;
+package cscie55.hw2test;
 
 import cscie55.hw2.*;
 
@@ -18,7 +18,7 @@ public class ElevatorTest
            building.elevator().boardPassenger(5);
        }catch(Exception ex){}
        System.out.println(building.elevator());
-       for (int i= 0; i < (Building.TOTAL_FLOORS-1)*2; i++)
+       for (int i= 0; i < (Building.FLOORS-1)*2; i++)
        {
            building.elevator().move();
            System.out.println(building.elevator());

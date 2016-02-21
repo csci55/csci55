@@ -16,7 +16,7 @@ package cscie55.hw2;
 public class Building
 {
     // User fed condition
-    public static final int TOTAL_FLOORS = 7;
+    public static final int FLOORS = 7;
 
     /**
     * Building Constructor
@@ -24,8 +24,8 @@ public class Building
     public Building()
     {
         elevator = new Elevator(this);
-        floors = new Floor[TOTAL_FLOORS];
-        for(int i = 0; i < TOTAL_FLOORS; i++)
+        floors = new Floor[FLOORS];
+        for(int i = 0; i < FLOORS; i++)
         {
             floors[i] = new Floor(this, i);
         }
@@ -47,7 +47,7 @@ public class Building
     */
     public Floor floor(int floorNumber)
     {
-        if(floorNumber < TOTAL_FLOORS)
+        if(floorNumber < FLOORS)
         {
             return floors[floorNumber];
         }else
@@ -62,7 +62,7 @@ public class Building
     */
     public String toString() {
 
-        return "TOTAL FLOORS " + (TOTAL_FLOORS) ;
+        return "TOTAL FLOORS " + (FLOORS) ;
     }
 
     private Elevator elevator;

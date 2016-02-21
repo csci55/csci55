@@ -8,7 +8,9 @@ import static org.junit.Assert.assertEquals;
 
 public class HW2ElevatorSimulationTest
 {
-    // Don't board any passengers. Just check that the elevator moves up and down correctly.
+    // Don't board any passengers.
+    // Just check that the elevator moves up and down correctly.
+
     @Test
     public void elevatorMotion()
     {

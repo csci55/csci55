@@ -6,3 +6,6 @@ In order to create a constraint this class assumes a final constant as TOTAL_FLO
 There are two enums defined as MOVE_UP and MOVE_DOWN to control the direction of the movement. This is used to change the values of private variable called current_direction.
 current_floor ranges 0 to 6 indicating range from floor #1 through #7.
 destined_passengers array keeps tracks of how many passers are destined to each floor.
+How to run:
+# set CLASSPATH=c:\java;c:\java\junit\junit-4.11.jar;c:\java\junit\hamcrest-core-1.3.jar
+# java -classpath "/Users/jao/jars/junit-4.11.jar:/Users/jao/jars/hamcrest-core-1.3.jar:/Users/jao/teaching/cscie55/spring2014/hw2/out/test/hw2:/Users/jao/teaching/cscie55/spring2014/hw2/out/production/hw2" org.junit.runner.JUnitCore cscie55.hw2test.HW2ElevatorSimulationTes

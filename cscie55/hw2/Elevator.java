@@ -33,9 +33,9 @@ public class Elevator
     {
         current_direction       = Direction.MOVE_UP;
         current_floor           = 0;
-        destined_passengers     = new int[Building.TOTAL_FLOORS];
+        destined_passengers     = new int[Building.FLOORS];
         destined_passengers[0]  = 0;
-        destined_stops          = new int[Building.TOTAL_FLOORS];
+        destined_stops          = new int[Building.FLOORS];
         destined_stops[0]       = 0;
     }
 
@@ -45,7 +45,7 @@ public class Elevator
     */
     public int currentFloor()
     {
-        return current_floor + (Building.TOTAL_FLOORS - TOP_FLOOR);
+        return current_floor + (Building.FLOORS - TOP_FLOOR);
     }
 
     /**
@@ -93,7 +93,7 @@ public class Elevator
 
     /**
     * This method boards a passenger to a destination floor.
-    * @param destinationFloorNumber Starts from 1 - TOTAL_FLOORS and NOT from 0 to TOTAL_FLOORS
+    * @param destinationFloorNumber Starts from 1 - FLOORS and NOT from 0 to FLOORS
     * @return int This returns 0 on successful boarding else non positive number
     * @throws ElevatorFullException This is full elevator condition
     * @see ElevatorFullException
@@ -145,7 +145,7 @@ public class Elevator
     // Private members for internal use only
 
     // Define Top and Ground floor values
-    private static final int    TOP_FLOOR           = Building.TOTAL_FLOORS -1;
+    private static final int    TOP_FLOOR           = Building.FLOORS -1;
     private static final int    GROUND_FLOOR        = 0;
 
     // current_floor ranges from [GROUND_FLOOR - TOP_FLOOR] and starts from GROUND_FLOOR
