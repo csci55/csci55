@@ -28,15 +28,18 @@ public class Elevator
 
     /**
     * Elevator Constructor
+    * @param building is the Object representing the Building
     */
     public Elevator(Building building)
     {
-        current_direction       = Direction.MOVE_UP;
-        current_floor           = 0;
-        destined_passengers     = new int[Building.FLOORS];
-        destined_passengers[0]  = 0;
-        destined_stops          = new int[Building.FLOORS];
-        destined_stops[0]       = 0;
+        this.building               = building;
+        current_direction           = Direction.MOVE_UP;
+        current_floor               = 0;
+        destined_passengers         = new int[Building.FLOORS];
+        destined_passengers[0]      = 0;
+        destined_stops              = new int[Building.FLOORS];
+        destined_stops[0]           = 0;
+        all_passengers_from_floor   = 0;
     }
 
     /**
@@ -65,14 +68,13 @@ public class Elevator
         // We will have to figure out if a passenger wants to board same floor
         destined_passengers[current_floor] = 0;
 
-        // Clear Flag to stop at current_floor
-        // Cover for condition if it was normal disembark or when out of CAPACITY
+        // Clear Flag to stop at current_floor (before the move?)
         destined_stops[current_floor] = 0;
 
         //First check for any Bondary conditions and adjust the direction
         if(current_floor == GROUND_FLOOR)
         {
-            current_direction = Direction.MOVE_UP;
+            current_direction           = Direction.MOVE_UP;
         }
         if(current_floor == TOP_FLOOR)
         {
@@ -89,6 +91,32 @@ public class Elevator
         }
         // Unboard the passeengers destined to the current floor
         destined_passengers[current_floor] = 0;
+
+        // Cover for condition if it was normal disembark or when out of CAPACITY
+        // Treating simple case for now
+        int capacity_now = CAPACITY - passengers();
+        int floor_boarding_count = building.floor(current_floor+1).passengersWaiting();
+        // System.out.println("Floor# count " +floor_boarding_count);
+        if((capacity_now  > 0 ))
+        {
+            // Probably need to go away counting for all passengers by destination
+            if(floor_boarding_count > 0)
+            {
+                int can_board_count = (capacity_now >= floor_boarding_count)?floor_boarding_count:capacity_now;
+                //destined_passengers[current_floor] += now_boarding;
+                all_passengers_from_floor += can_board_count;
+                building.floor(current_floor+1).passengersBoarded(can_board_count);
+            }
+        }
+        if((current_direction == Direction.MOVE_DOWN) && (current_floor == GROUND_FLOOR))
+        {
+            all_passengers_from_floor   = 0;
+            for (int i = 0; i <= TOP_FLOOR; i++)
+            {
+                destined_passengers[i]  = 0;
+                destined_stops[i]       = 0;
+            }
+        }
     }
 
     /**
@@ -100,10 +128,13 @@ public class Elevator
     */
     public int boardPassenger(int destinationFloorNumber) throws ElevatorFullException
     {
+        //Flag to stop at destinationFloorNumber
+        //building.floor(destinationFloorNumber-1).waitForElevator();
+        destined_stops[destinationFloorNumber-1]++;
+
         if(passengers() >= CAPACITY)
         {
-            //Flag to stop at current_floor
-            destined_stops[destinationFloorNumber] = 1;
+            //destined_stops[destinationFloorNumber] = 1;
             throw new ElevatorFullException();
         }
         int ret = 0;
@@ -134,8 +165,8 @@ public class Elevator
     */
     private int all_passengers_onboard()
     {
-        int all_passengers = 0;
-        for (int i = 0; i < TOP_FLOOR; i++)
+        int all_passengers = all_passengers_from_floor;
+        for (int i = 0; i <= TOP_FLOOR; i++)
         {
             all_passengers += destined_passengers[i];
         }
@@ -157,5 +188,7 @@ public class Elevator
     // Array for passengers count for each floor
     private int                 destined_passengers[];
     // Array for stop needed for each floor
-    private int                 destined_stops[];
+    private int                     destined_stops[];
+    private Building            building;
+    private int                 all_passengers_from_floor;
 }

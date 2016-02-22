@@ -16,10 +16,13 @@ public class Floor
 
     /**
     * Floor Constructor
+    * @param building is the Building Object to which this Floor belongs
+    * @param floorNumber is floor number this Object represents
     */
     public Floor(Building building, int floorNumber)
     {
-        floor = floorNumber;
+        floor               = floorNumber;
+        passengers_waiting  = 0;
     }
 
     /**
@@ -32,6 +35,19 @@ public class Floor
     }
 
     /**
+    * This method takes passengers boarded and adjusts the total passengers
+    * still waiting
+    * @param passengers_boarded is number of passengers no longer waiting
+    */
+    public void passengersBoarded(int passengers_boarded)
+    {
+        if(passengers_waiting >= passengers_boarded)
+        {
+            passengers_waiting -= passengers_boarded;
+        }
+    }
+
+    /**
     * This method adds a passengers request for boarding the Elevator and adds
     * itself to the wait list
     */
@@ -39,7 +55,6 @@ public class Floor
     {
         passengers_waiting++;
     }
-
 
     /**
     * This method prints state of the object at any instant of time

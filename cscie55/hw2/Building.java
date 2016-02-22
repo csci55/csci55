@@ -47,9 +47,9 @@ public class Building
     */
     public Floor floor(int floorNumber)
     {
-        if(floorNumber < FLOORS)
+        if(floorNumber <= FLOORS)
         {
-            return floors[floorNumber];
+            return floors[floorNumber -1];
         }else
         {
             return null;
