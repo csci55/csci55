@@ -61,7 +61,7 @@ public class Elevator
     }
 
     /**
-    * This method moves the Elevator and Unboard
+    * This method moves the Elevator and board/uUnboard the passengers
     */
     public void move()
     {
@@ -108,6 +108,7 @@ public class Elevator
                 building.floor(current_floor+1).passengersBoarded(can_board_count);
             }
         }
+        // On reaching Ground floor it resets
         if((current_direction == Direction.MOVE_DOWN) && (current_floor == GROUND_FLOOR))
         {
             all_passengers_from_floor   = 0;
@@ -129,12 +130,10 @@ public class Elevator
     public int boardPassenger(int destinationFloorNumber) throws ElevatorFullException
     {
         //Flag to stop at destinationFloorNumber
-        //building.floor(destinationFloorNumber-1).waitForElevator();
         destined_stops[destinationFloorNumber-1]++;
 
         if(passengers() >= CAPACITY)
         {
-            //destined_stops[destinationFloorNumber] = 1;
             throw new ElevatorFullException();
         }
         int ret = 0;

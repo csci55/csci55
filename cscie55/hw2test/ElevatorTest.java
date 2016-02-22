@@ -48,8 +48,8 @@ public class ElevatorTest
            building.elevator().move();
            System.out.println(building.elevator());
         }
-    }
 
+    }
     public static void floor_call()
     {
         Building building = new Building();
