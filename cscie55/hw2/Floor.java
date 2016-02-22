@@ -38,12 +38,16 @@ public class Floor
     * This method takes passengers boarded and adjusts the total passengers
     * still waiting
     * @param passengers_boarded is number of passengers no longer waiting
+    * @param src is caller Object instance
     */
-    public void passengersBoarded(int passengers_boarded)
+    protected void passengersBoarded(int passengers_boarded, Object src)
     {
-        if(passengers_waiting >= passengers_boarded)
+        if(src instanceof Elevator)
         {
-            passengers_waiting -= passengers_boarded;
+            if(passengers_waiting >= passengers_boarded)
+            {
+                passengers_waiting -= passengers_boarded;
+            }
         }
     }
 

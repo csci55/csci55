@@ -105,7 +105,7 @@ public class Elevator
                 int can_board_count = (capacity_now >= floor_boarding_count)?floor_boarding_count:capacity_now;
                 //destined_passengers[current_floor] += now_boarding;
                 all_passengers_from_floor += can_board_count;
-                building.floor(current_floor+1).passengersBoarded(can_board_count);
+                building.floor(current_floor+1).passengersBoarded(can_board_count, this);
             }
         }
         // On reaching Ground floor it resets
