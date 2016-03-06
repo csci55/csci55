@@ -1,0 +1,36 @@
+This is basic illustration of Elevator for second Assignment as per the specs laid out by Harvard University Spring 2016 CSCI-55 course.
+
+It has three major classes namely Elevator, Floor and Building.
+
+Elevator Class:
+==============
+The public methods for Elevator Class are move(), boardPassenger(int floor), currentFloor() and passengers().
+move() is public method to move the elevator one floor at a time.
+boardPassenger(int floor) takes a passenger to a desired floor.
+There are two enums defined as MOVE_UP and MOVE_DOWN to control the direction of the movement. This is used to change the values of private variable called current_direction.
+current_floor ranges 0 to 6 indicating range from floor #1 through #7.
+destined_passengers array keeps track of how many passers are destined to each floor.
+
+Floor Class:
+==============
+The public methods for Floor Class are passengersWaiting(), waitForElevator().
+passengersWaiting(): Returns the number of passengers on the floor who are waiting for the elevator.
+waitForElevator(): Called when a passenger on the floor wants to wait for the elevator.
+A protected method passengersBoarded(int passengers_boarded, Object src) is meant for Elevator Class only.
+
+Building Class:
+==============
+The public methods for Building Class are elevator() and floor(int floorNumber).
+elevator() : Returns the building's Elevator.
+floor(int floorNumber): Returns the Floor object for the given floor number.
+
+Constraints:
+==============
+There are two physical constraints to limit the application, namely Building.FLOORS set to 7 and Elevator.CAPACITY set to 10.
+
+How to run: (extract the jar file in c:\java folder)
+==========
+# set CLASSPATH=c:\java;c:\java\junit\junit-4.11.jar;c:\java\junit\hamcrest-core-1.3.jar
+# javac cscie55\hw2\*.java
+# javac cscie55\hw2test\HW2ElevatorSimulationTest.java
+# java org.junit.runner.JUnitCore cscie55.hw2test.HW2ElevatorSimulationTest
